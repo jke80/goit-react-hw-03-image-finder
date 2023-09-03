@@ -26,7 +26,7 @@ export class App extends React.Component {
   wrapperStyle={{}}
   wrapperClass="MagnifyingGlass-wrapper"
   glassColor = '#c0efff'
-  color = '#e15b64'
+  color = '#3f51b5'
 />
 
     <Button name='Load more'/>
