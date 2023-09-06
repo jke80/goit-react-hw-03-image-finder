@@ -5,6 +5,9 @@ export class ImageGalleryItem extends React.Component {
   state = {
     showModal: false,
   };
+  handleCloseModal = ()=>{
+    this.setState({ showModal: false });
+  }
   handleClick = () => {
     this.setState({ showModal: true });
   };
@@ -20,7 +23,7 @@ export class ImageGalleryItem extends React.Component {
           src={url}
           alt={tags}
         />
-        {showModal && <Modal url={largeImageUrl} tags={tags} />}
+        {showModal && <Modal url={largeImageUrl} tags={tags} onCloseModal={this.handleCloseModal} />}
       </li>
     );
   }

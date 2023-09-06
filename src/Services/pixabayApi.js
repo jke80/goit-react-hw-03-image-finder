@@ -22,6 +22,5 @@ export const getImages = async ({ page = 1, q = '' }) => {
   };
 
   const responce = await instance.get('', { params });
-  console.log(responce);
-  return responce.data;
+  return responce;
 };
