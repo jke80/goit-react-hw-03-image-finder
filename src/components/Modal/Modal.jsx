@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import css from './Modal.module.css';
 
 export class Modal extends React.Component {
@@ -11,7 +12,7 @@ export class Modal extends React.Component {
 
   handlePressEsc = e => {
     const { onCloseModal } = this.props;
-    
+
     if (e.code === 'Escape') {
       onCloseModal();
     }
@@ -35,3 +36,9 @@ export class Modal extends React.Component {
     );
   }
 }
+
+Modal.propTypes = {
+  url: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  onCloseModal: PropTypes.func.isRequired,
+};

@@ -27,11 +27,11 @@ export class App extends React.Component {
       });
       try {
         const response = await getImages({ q: query });
-        
+
         const {
           data: { hits, totalHits },
           config: {
-            params: { page, per_page },
+            params: { per_page },
           },
         } = response;
 
@@ -58,9 +58,14 @@ export class App extends React.Component {
       this.setState({ isLoading: true });
       try {
         const response = await getImages({ q: query, page });
-        const { data:{hits}, config:{params:{page, per_page}} } = response;
+        const {
+          data: { totalHits, hits },
+          config: {
+            params: { per_page },
+          },
+        } = response;
 
-        if (data.totalHits <= page * per_page) {
+        if (totalHits <= page * per_page) {
           this.setState({ showButtonLoadMore: false });
           Notify.info("You've reached the end of search results.");
         }

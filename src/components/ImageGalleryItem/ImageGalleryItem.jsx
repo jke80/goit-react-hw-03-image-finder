@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 import { Modal } from 'components/Modal/Modal';
 export class ImageGalleryItem extends React.Component {
   state = {
     showModal: false,
   };
-  handleCloseModal = ()=>{
+  handleCloseModal = () => {
     this.setState({ showModal: false });
-  }
+  };
   handleClick = () => {
     this.setState({ showModal: true });
   };
@@ -23,8 +24,20 @@ export class ImageGalleryItem extends React.Component {
           src={url}
           alt={tags}
         />
-        {showModal && <Modal url={largeImageUrl} tags={tags} onCloseModal={this.handleCloseModal} />}
+        {showModal && (
+          <Modal
+            url={largeImageUrl}
+            tags={tags}
+            onCloseModal={this.handleCloseModal}
+          />
+        )}
       </li>
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  largeImageUrl: PropTypes.string.isRequired,
+};
