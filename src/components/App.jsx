@@ -22,8 +22,6 @@ export class App extends React.Component {
     if (prevState.query !== query) {
       this.setState({
         isLoading: true,
-        gallery: [],
-        showButtonLoadMore: false,
       });
       try {
         const response = await getImages({ q: query });
@@ -54,7 +52,7 @@ export class App extends React.Component {
       return;
     }
 
-    if (prevState.page !== page && gallery.length) {
+    if (prevState.page !== page) {
       this.setState({ isLoading: true });
       try {
         const response = await getImages({ q: query, page });
@@ -82,7 +80,7 @@ export class App extends React.Component {
   }
 
   handleSubmitSearch = query => {
-    this.setState({ query, page: 1 });
+    this.setState({ query, page: 1, gallery: [], showButtonLoadMore: false });
   };
 
   handleLoadMore = () => {
@@ -95,7 +93,7 @@ export class App extends React.Component {
       <div className={css.app}>
         <Searchbar onSubmit={this.handleSubmitSearch} />
 
-        <ImageGallery gallery={gallery} />
+        {!!gallery.length && <ImageGallery gallery={gallery} />}
 
         {isLoading && (
           <div className={css.progressBarContainer}>
@@ -111,7 +109,7 @@ export class App extends React.Component {
           </div>
         )}
 
-        {showButtonLoadMore && (
+        {!isLoading && showButtonLoadMore && (
           <Button name="Load more" onClick={this.handleLoadMore} />
         )}
       </div>
