@@ -17,7 +17,7 @@ export class App extends React.Component {
   };
 
   async componentDidUpdate(_, prevState) {
-    const { query, page, gallery } = this.state;
+    const { query, page } = this.state;
 
     if (prevState.query !== query) {
       this.setState({
